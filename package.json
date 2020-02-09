@@ -1,0 +1,37 @@
+{
+  "private": false,
+  "name": "xns-seek-bar",
+  "version": "1.0.0",
+  "description": "A seekable progress bar component for Vue.js",
+  "main": "./dist/index.js",
+  "author": "James Sinkala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xinnks/xns-seek-bar/issues"
+  },
+  "homepage": "https://github.com/xinnks/xns-seek-bar#readme",
+  "scripts": {
+    "dev": "vue serve src/XnsSeekBar.vue",
+    "build": "bili --name index --plugin vue --vue.css false",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xinnks/xns-seek-bar.git"
+  },
+  "keywords": [
+    "seek",
+    "slider",
+    "progress",
+    "vue",
+    "xinnks"
+  ],
+  "devDependencies": {
+    "bili": "^4.8.1",
+    "rollup-plugin-vue": "^5.1.6",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
