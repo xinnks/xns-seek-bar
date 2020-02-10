@@ -1,6 +1,6 @@
 <template>
-    <div ref="trackprogress" class="progress-wrapper" :style="'position: inherit; display: flex; flex: 1; width: inherit; height: '+barHeight+'px; position: relative; background: '+barShadeColor+'; overflow: hidden;'">
-        <div :style="'background: rgba(3,169,244, .8); width: '+progress+'%;position: absolute; left: 0; right: 0; bottom: 0; top: 0; height: inherit; background: '+barColor+''+colorIntensity" class="progressbar">
+    <div ref="trackprogress" class="xns-seeker-progress-wrapper" :style="'height: '+barHeight+'px; background: '+barShadeColor">
+        <div :style="'width: '+progress+'%; background: '+localBarColor" class="xns-seeker-progress-bar">
         </div>
     </div>
 </template>
@@ -40,35 +40,40 @@ export default {
     },
     data() {
         return {
-            progress: 0, // a value less than totalValue
-            localValue: 0, // total value
+            progress: 0, // % of totalValue
             progressTotalWidth: 0,
-            colorIntensity: '',
-        }
-    },
-    computed: {
-        localListen(){
-            return this.listen
+            colorIntensity: 50,
+            localBarColor: ''
         }
     },
     watch: {
         immediate: true,
         currentValue() {
-            let max = ((this.currentValue / this.totalValue) *100)
-            this.progress = max <= 100 ? max : 100
+            this.calibrateProgress(this.currentValue)
+        },
+        totalValue(){
+            this.calibrateProgress(this.currentValue, this.totalValue)
         },
         listen(){
             this.listenToEvents(this.listen)
         },
         intensity(){
-            this.colorIntensity = (50+(this.intensity * 50)) >= 100 ? '' : (50+(this.intensity * 50))
-        }
+            this.hexOpacity(this.barColor, this.intensity)
+        },
+        barColor() {
+            this.hexOpacity(this.barColor, this.intensity)
+        },
     },
     mounted() {
-        let max = ((this.currentValue / this.totalValue) *100)
-        this.progress = max <= 100 ? max : 100
-        this.colorIntensity = 50 // progress opacity value
-        this.listenToEvents(this.localListen)
+        // calibrate progress
+        this.calibrateProgress(this.currentValue, this.totalValue)
+
+        // set seek bar color
+        this.hexOpacity(this.barColor, this.intensity)
+
+        // start listening to taps and clicks
+        this.listenToEvents(this.listen)
+
         // recalibrate progress width on window width resize
         window.addEventListener('resize', this.windowResize, false)
     },
@@ -119,6 +124,18 @@ export default {
                 this.$refs.trackprogress.removeEventListener("mousedown", this.detectMouseDown, false)
                 this.$refs.trackprogress.removeEventListener("mouseup", this.detectMouseUp, false)
             }
+        },
+
+        // calibrate progress
+        calibrateProgress(currentVal = this.currentValue, totalVal = this.totalValue){
+            let max = ((currentVal / totalVal) *100)
+            this.progress = max <= 100 ? max : 100
+        },
+
+        // apply opacity to color
+        hexOpacity(hex, opacity){
+            let op = (opacity * 100) <= 99 ? (opacity * 100) : 99
+            this.localBarColor = `${hex}`+op
         }
     }
 }
@@ -130,5 +147,22 @@ export default {
   }
   *, *:hover{
     cursor: default;
+  }
+  .xns-seeker-progress-wrapper{
+    position: inherit;
+    display: flex;
+    flex: 1;
+    width: inherit;
+    position: relative;
+    overflow: hidden
+  }
+  .xns-seeker-progress-bar{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    height:
+    inherit;
   }
 </style>
