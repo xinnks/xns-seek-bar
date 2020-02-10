@@ -19,11 +19,20 @@ import XnsSeekBar from 'xns-seek-bar'
 Vue.use(XnsSeekBar)
 ```
 
+## In Browser ###
+```sh
+// Latest update
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xns-seek-bar/dist/index.umd.js"></script>
+```
+
+
 ### Example
 
 ```sh
 <xns-seek-bar :bar-color="'#ffdd00'" :current-value="33" :total-value="100"></xns-seek-bar>
 ```
+
 
 ## Options
 
@@ -35,7 +44,7 @@ Vue.use(XnsSeekBar)
 | barHeight | Number | false | 0.5 |
 | barColor | String (Hex) | false | false |
 | barShadeColor | String (Hex) | false | false |
-| intensity | Number (1 - 100)) | false | 0 |
+| intensity | Number (0.1 - 1)) | false | 0 |
 
 
 ### Options Details
