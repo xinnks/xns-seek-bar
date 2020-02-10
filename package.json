@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "xns-seek-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A seekable progress bar component for Vue.js",
   "main": "./dist/index.js",
   "author": "James Sinkala",
