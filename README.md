@@ -3,6 +3,8 @@ A seekable progress bar component for Vue.js
 
 ![xns-seek-bar](https://res.cloudinary.com/djx5h4cjt/image/upload/v1581230835/xns-seek-bar/demo.gif "xns-seek-bar")
 
+[![](https://badgen.net/npm/v/xns-seek-bar)](https://badgen.net/npm/v/xns-seek-bar) [![](https://badgen.net/npm/license/xns-seek-bar)](https://badgen.net/npm/license/xns-seek-bar) [![](https://badgen.net/packagephobia/publish/xns-seek-bar)](https://badgen.net/packagephobia/publish/xns-seek-bar) [![](https://badgen.net/bundlephobia/minzip/xns-seek-bar)](https://badgen.net/bundlephobia/minzip/xns-seek-bar)
+
 
 ### install
 
