@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XnsSeekBar Vue 3 Example</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" type="text/css" href="./dist/style.css"></link>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .example {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .seek-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>XnsSeekBar Vue 3 Component Examples</h1>
+        
+        <div class="example">
+            <h3>Basic Example</h3>
+            <div class="seek-container">
+                <xns-seek-bar 
+                    :current-value="currentValue1" 
+                    :total-value="100"
+                    @seeked-to="onSeek1"
+                ></xns-seek-bar>
+            </div>
+            <p>Current Value: {{ currentValue1 }}</p>
+            <button @click="currentValue1 = Math.min(100, currentValue1 + 10)">+10</button>
+            <button @click="currentValue1 = Math.max(0, currentValue1 - 10)">-10</button>
+        </div>
+
+        <div class="example">
+            <h3>Custom Styling Example</h3>
+            <div class="seek-container">
+                <xns-seek-bar 
+                    :current-value="currentValue2" 
+                    :total-value="200"
+                    bar-color="#ff6b6b"
+                    bar-shade-color="#f0f0f0"
+                    :bar-height="80"
+                    :intensity="0.8"
+                    @seeked-to="onSeek2"
+                ></xns-seek-bar>
+            </div>
+            <p>Current Value: {{ currentValue2 }} / 200</p>
+        </div>
+
+        <div class="example">
+            <h3>Disabled Interaction Example</h3>
+            <div class="seek-container">
+                <xns-seek-bar 
+                    :current-value="75" 
+                    :total-value="100"
+                    :listen="false"
+                    bar-color="#6c5ce7"
+                    bar-shade-color="#ddd6fe"
+                    :bar-height="40"
+                ></xns-seek-bar>
+            </div>
+            <p>This seek bar doesn't respond to clicks (listen=false)</p>
+        </div>
+    </div>
+
+    <script src="./dist/index.umd.js"></script>
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    currentValue1: 30,
+                    currentValue2: 100
+                }
+            },
+            methods: {
+                onSeek1(value) {
+                    console.log('Seeked to:', value);
+                    this.currentValue1 = value;
+                },
+                onSeek2(value) {
+                    console.log('Seeked to:', value);
+                    this.currentValue2 = value;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
